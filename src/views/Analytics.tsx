@@ -30,9 +30,9 @@ function targetRows(m: Metrics) {
     {
       label: 'Trend → Content Time',
       value: fmtMin(m.medianTimeToContentMin),
-      target: '< 1 h',
-      ok: m.medianTimeToContentMin === null ? null : m.medianTimeToContentMin < 60,
-      note: '含 6 条预置耗时；新草稿按虚拟时钟计时',
+      target: '< 30 min',
+      ok: m.medianTimeToContentMin === null ? null : m.medianTimeToContentMin < 30,
+      note: '含 6 条预置耗时；需求建议 5–10 min，差额全在人工改写',
     },
   ]
 }

@@ -46,7 +46,7 @@ npm run e2e        # 无头 Chrome 跑完整闭环，19 项断言（需先起 pr
 | 1 | Working Demo | ✅ | [在线演示](https://sacura243.github.io/telyclaw-growth-engine/) · 本地 `npm run dev` |
 | 2 | Source Code (GitHub) | ✅ | <https://github.com/sacura243/telyclaw-growth-engine> |
 | 3 | 3–5 mins Demo Video | ⬜ | 录制脚本见 `DEMO_SCRIPT.md`，录完把链接贴这里 |
-| 3b | Final Growth Question（30 天 10x） | ✅ | `GROWTH_PLAN.md` |
+| 3b | Final Growth Question（90 天 10x Qualified Reach） | ✅ | `GROWTH_PLAN.md` |
 | 4 | README：Product Logic | ✅ | §3 |
 | 5 | README：System Architecture | ✅ | §4 |
 | 6 | README：Trend Detection Logic | ✅ | §5 |
@@ -55,7 +55,7 @@ npm run e2e        # 无头 Chrome 跑完整闭环，19 项断言（需先起 pr
 | 9 | README：AI / Vibe Coding Tools | ✅ | §11 |
 | 10 | README：MVP Scope & What's Next | ✅ | §12 |
 | 11 | 说明 mock 数据 / 真实数据获取方案 | ✅ | §10 |
-| 12 | 必答题：30 天让官方 X 账号 10x | ✅ | `GROWTH_PLAN.md`（独立文件，因为它是一份增长方案，不是 README 的一节） |
+| 12 | 必答题：90 天让官方 X 账号 10x Qualified Reach | ✅ | `GROWTH_PLAN.md`（独立文件，因为它是一份增长方案，不是 README 的一节） |
 
 ### 最低验收标准逐条对照
 
@@ -306,9 +306,11 @@ score = baseScore × relevanceGate × sampleShrink × learnedFactor
 
 | 角度 | 什么时候用 | 结构 |
 |---|---|---|
-| **反共识观点** Hot take | 话题已有主流叙事，或已经饱和 | 否定主流 → 数据 → 我的判断 |
-| **拆解复盘** Teardown | 话题需要可信度，或处于早期 | 具体动作编号 → 数据 → 哪一步最关键 |
-| **产品视角** Product angle | 话题与产品强相关 | 把公共话题翻译成产品能解决的具体问题 |
+| **反共识观点** Hot Take / Opinion | 话题已有主流叙事，或已经饱和 | 否定主流 → 数据 → 我的判断 |
+| **拆解复盘** Educational / Insight | 话题需要可信度，或处于早期 | 具体动作编号 → 数据 → 哪一步最关键 |
+| **产品视角** TelyClaw Product Angle | 话题与产品强相关 | 把公共话题翻译成产品能解决的具体问题 |
+
+需求给的三个名字是 Hot Take / Educational / Product Angle。我把它落成「反共识 / 拆解复盘 / 产品视角」，因为 Educational 在 X 上不是"科普"，是"把一件事拆开讲清楚，让人能照着做"——所以它的结构里必须有可执行的动作编号，光有观点不算这一档。
 
 角度不是随机给的：系统按阶段标一个「推荐」（饱和→反共识，早期→拆解，其余→产品视角），但三个始终都在，因为**"这个题该用什么姿势说"最终还是人的判断**。
 
@@ -402,10 +404,13 @@ AI Draft ──(编辑)──> Human Edit ──(Approve)──> Approved ──
 | 检测延迟（扫描间隔） | < 30 min | 15 min | **设计值**，不是测量值 | ✅ |
 | Trend Hit Rate | > 50% | 80%（4/5） | 模拟结果 | ✅ |
 | Acceptance Rate | > 50% | 86%（6/7） | 真实计数 | ✅ |
-| Trend → Content Time | < 1 h | 25 min | 6 条预置 + 你的真实操作 | ✅ |
+| Trend → Content Time | 需求建议 5–10 min；我们的验收线 < 30 min | 25 min（中位数） | 真实计数（时间戳） | ✅ 达标，未达需求建议值 |
+| Engagement Lift | > 1× | 1.4×（21 有效互动 / 5 条 / 基线 3） | 模拟结果 | ✅ |
 | 北极星 | — | 4.2 | **模拟结果** | 参考 |
 
-> 加粗那几行必须分开看：**扫描间隔**是配置；**命中率、北极星**来自 `simulateOutcome()`，是模型输出，不是市场反馈；**Acceptance Rate 和 Content Time** 是真实计数（前者数状态，后者算时间戳）。
+> 加粗那几行必须分开看：**扫描间隔**是配置；**命中率、Lift、北极星**来自 `simulateOutcome()`，是模型输出，不是市场反馈；**Acceptance Rate 和 Content Time** 是真实计数（前者数状态，后者算时间戳）。
+
+**Trend → Content Time 为什么是 25 分钟，不是 5–10 分钟。** 机器那一段（检测 → 三个角度 → 草稿）不到 1 分钟，25 分钟里 24 分钟是人改写和审批。要压到 10 分钟只有两条路：LLM 出稿质量高到不用改，或者允许不审直接发。前者模板生成做不到（§12.1），后者我明确不做（§3.3 ①）。所以这里报 25 分钟——报一个靠"跳过审稿"凑出来的 8 分钟，比报 25 分钟更不可信。
 
 **市场提前量**是另一个数，不进达标表：话题首次进入 Top-3 的时刻，减去它小时互动量达到 7 日峰值一半的时刻。正数=我们早，负数=已经过峰。它用 1 小时粒度回放、且回放时的排序是简化版（只用速率×相关性近似，没有跑完整机会分），所以是参考量。demo 里 Top-3 有两个是负的——这不是 bug，是"24 小时窗口下确实会捞到已经过峰的话题"，也说明排序还该把"过峰"当成一个惩罚项，见 §12.2。
 
