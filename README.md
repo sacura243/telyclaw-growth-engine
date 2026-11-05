@@ -4,6 +4,8 @@
 监控 X 上的账号 → 检测正在加速的话题 → 按「值不值得 TelyClaw 出手」排序 → 生成三个角度的草稿 → 人审批 → 发布 → 量 Qualified Engagement → 回写排序。
 
 > Vibe Coding Challenge 交付物 · 一个能跑的单页应用，不是一份 PPT。
+>
+> **在线演示：<https://sacura243.github.io/telyclaw-growth-engine/>**（推送即自动部署，无需装环境）
 
 ```
 Monitor → Detect → Rank → Ideate → Draft → Review → Publish → Measure ─┐
@@ -41,8 +43,8 @@ npm run e2e        # 无头 Chrome 跑完整闭环，19 项断言（需先起 pr
 
 | # | 要求 | 状态 | 位置 |
 |---|---|---|---|
-| 1 | Working Demo | ✅ | 本仓库，`npm run dev` |
-| 2 | Source Code (GitHub) | ✅ | 本仓库 |
+| 1 | Working Demo | ✅ | [在线演示](https://sacura243.github.io/telyclaw-growth-engine/) · 本地 `npm run dev` |
+| 2 | Source Code (GitHub) | ✅ | <https://github.com/sacura243/telyclaw-growth-engine> |
 | 3 | 3–5 mins Demo Video | ⬜ | 录制脚本见 `DEMO_SCRIPT.md`，录完把链接贴这里 |
 | 3b | Final Growth Question（30 天 10x） | ✅ | `GROWTH_PLAN.md` |
 | 4 | README：Product Logic | ✅ | §3 |
