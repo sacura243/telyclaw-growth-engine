@@ -1,0 +1,8 @@
+node_modules
+dist
+.tmp
+.DS_Store
+*.local
+
+# 内部交接文档，不进公开仓库
+HANDOVER.md
